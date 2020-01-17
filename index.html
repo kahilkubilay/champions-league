@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vairosoft | Champions League</title>
+	<meta charset="utf-8">
+
+	<style type="text/css">
+		@import'css/main.css';
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<!-- League fixture -->
+		<div class="leagueContainer">
+			<div class="leagueHeader">
+				<span>League Table</span>			
+				<span>Match Result</span>			
+			</div>
+			<div class="fixtureDetails">
+				<!-- all teams -->
+				<ul class="fixtureVar">
+					<li>Teams</li>
+					<li>PTS</li>
+					<li>P</li>
+					<li>W</li>
+					<li>D</li>
+					<li>L</li>
+					<li>GD</li>
+				</ul>
+				<!-- teams -->
+				<ul class="fixtureVar">
+					<li id="chelsea">Chelsea</li>
+					<li id="chelseaPTS">0</li>
+					<li id="chelseaP">0</li>
+					<li id="chelseaW">0</li>
+					<li id="chelseaD">0</li>
+					<li id="chelseaL">0</li>
+					<li id="chelseaGD">0</li>
+				</ul>
+				<ul class="fixtureVar">
+					<li id="mcity">M.City</li>
+					<li id="mcityPTS">0</li>
+					<li id="mcityP">0</li>
+					<li id="mcityW">0</li>
+					<li id="mcityD">0</li>
+					<li id="mcityL">0</li>
+					<li id="mcityGD">0</li>
+				</ul>
+				<ul class="fixtureVar">
+					<li id="liverpool">Liverpool</li>
+					<li id="liverpoolPTS">0</li>
+					<li id="liverpoolP">0</li>
+					<li id="liverpoolW">0</li>
+					<li id="liverpoolD">0</li>
+					<li id="liverpoolL">0</li>
+					<li id="liverpoolGD">0</li>
+				</ul>
+				<ul class="fixtureVar">
+					<li id="arsenal">Arsenal</li>
+					<li id="arsenalPTS">0</li>
+					<li id="arsenalP">0</li>
+					<li id="arsenalW">0</li>
+					<li id="arsenalD">0</li>
+					<li id="arsenalL">0</li>
+					<li id="arsenalGD">0</li>
+				</ul>														
+			</div>
+
+			<!-- Match Result -->
+			<div class="mathResult">
+				<div class="resultHeader"><span id="week">press playAll() or nextWeek()</span></div>
+				<div id="firstMatch"></div>
+				<div id="secondMatch"></div>
+				<div id="championsTeam"></div>
+			</div>
+
+			<button id="playAll">Play All</button>
+			<button id="nextWeek">Next Week</button>
+
+		</div>
+	</div>
+
+	<script src="js/main.js" type="text/javascript"></script>
+
+</body>
+</html>

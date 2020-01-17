@@ -1,0 +1,70 @@
+/* all elements */
+*{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	color: #000;
+}
+
+/* container */
+.leagueContainer{
+	width: 800px;
+	height: 200px;
+	border: 1px solid gray;
+	margin: 50px auto;
+	position: relative;
+}
+
+.mathResult{
+	text-align: center;
+}
+
+.resultHeader{
+	margin-bottom: 15px;
+}
+
+.leagueHeader span{
+	display: inline-block;
+	float: left;
+	width: 398px;
+	text-align: center;
+	border: 1px solid gray;
+}
+
+/* fixture details */
+.fixtureDetails{
+	width: 399px;
+	margin-top: 3px;
+	float: left;
+}
+
+.fixtureDetails ul li{
+	float: left;
+	border: 1px solid gray;
+	border-left: 0;
+	width: 45px;
+	height: 25px;
+	text-align: center;
+	line-height: 1.5;
+}
+
+.fixtureDetails ul li:nth-child(1){
+	width: 122px;
+}
+
+/*buttons*/
+#playAll{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+#nextWeek{
+	position: absolute;;
+	right: 0;
+	bottom: 0;
+}
+
+#championsTeam{
+	margin-top: 10px;
+}
