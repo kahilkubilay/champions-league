@@ -1,4 +1,4 @@
-// teams object
+	// teams object
 let chelsea = {
 	type: 'team',
 	name: 'Chelsea',
@@ -58,6 +58,43 @@ let liverpool = {
 	goalFor: 0,
 	goalAgainst: 0,
 }
+
+if( window.localStorage.getItem('arsenal') || window.localStorage.getItem('mcity') || window.localStorage.getItem('chelsea') || window.localStorage.getItem('liverpool')){
+	objUpdate('chelsea', chelsea);
+	objUpdate('liverpool', liverpool);
+	objUpdate('mcity', mcity);
+	objUpdate('arsenal', arsenal);
+}
+
+
+// object update
+// add objName type of String ---> objUpdate('chelse', object)
+function objUpdate(objName, object){
+	let objData = objName;
+	let objCapsule = {};
+
+	objData = localStorage.getItem(objName);
+	objCapsule = JSON.parse(objData);
+
+	// update values
+	object.point = objCapsule.point;
+	object.played = objCapsule.played;
+	object.won = objCapsule.won;
+	object.drawn = objCapsule.drawn;
+	object.lost = objCapsule.lost;
+	object.form = objCapsule.form;
+	object.motivation = objCapsule.motivation;
+	object.goalFor = objCapsule.goalFor;
+	object.goalAgainst = objCapsule.goalAgainst;
+}
+
+// save on the localstorage
+let objTeam = [];
+objTeam.push(chelsea);
+objTeam.push(mcity);
+objTeam.push(liverpool);
+objTeam.push(arsenal);
+
 
 let fixture = {
 	firstWeek: '',
@@ -151,6 +188,10 @@ function playMatch(firstTeam, secondTeam){
 		drawn(firstTeam, secondTeam, firstTeamScore, secondTeamScore);
 	}
 
+	window.localStorage.setItem('arsenal', JSON.stringify(arsenal));
+	window.localStorage.setItem('mcity', JSON.stringify(mcity));
+	window.localStorage.setItem('liverpool', JSON.stringify(liverpool));
+	window.localStorage.setItem('chelsea', JSON.stringify(chelsea));
 }
 
 // winner & lost team
@@ -247,8 +288,10 @@ function startLeague(){
 if(window.localStorage.getItem('fixture') == null)
 	startLeague();
 
-// main function
-	
+
+
+// nextWeek function
+
 document.getElementById('nextWeek').onclick = function(){
 	document.getElementById('nextWeek').innerHTML = 'Next Week';
 	for(var i=0 ; i<=6 ; i++){
@@ -268,6 +311,7 @@ document.getElementById('nextWeek').onclick = function(){
 					playMatch(matchFirstTeam, matchSecondTeam);
 
 					// DOM manipulation
+					document.getElementById('infoWeek').innerHTML = '';
 					document.getElementById('week').innerHTML = localStorage.getItem('week') + '. Week Math Result';
 					document.getElementById('firstMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 
@@ -280,7 +324,7 @@ document.getElementById('nextWeek').onclick = function(){
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 					break;
-				case 2:
+					case 2:
 					// second week
 
 					// first match
@@ -303,7 +347,7 @@ document.getElementById('nextWeek').onclick = function(){
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 
 					break;
-				case 3:
+					case 3:
 					// third week
 
 					// first match
@@ -325,7 +369,7 @@ document.getElementById('nextWeek').onclick = function(){
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 					break;
-				case 4:
+					case 4:
 					// fourth week
 
 					// first match
@@ -347,7 +391,7 @@ document.getElementById('nextWeek').onclick = function(){
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 					break;
-				case 5:
+					case 5:
 					// fifth week
 
 					// first match
@@ -369,7 +413,7 @@ document.getElementById('nextWeek').onclick = function(){
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 					break;					
-				case 6:
+					case 6:
 					// sixth week
 
 					// first match
@@ -391,8 +435,8 @@ document.getElementById('nextWeek').onclick = function(){
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 					break;
-				default:
-			}
+					default:
+				}
 
 			// DOM Manipulation
 			// chelsea
@@ -429,6 +473,7 @@ document.getElementById('nextWeek').onclick = function(){
 			
 			if(weekIndex == 6){
 				
+				// Champion team
 				if(chelsea.point > mcity.point && chelsea.point > liverpool.point && chelsea.point > arsenal.point)
 					document.getElementById('championsTeam').innerHTML = 'Chelsea <br> is the champion of the season';
 				else if(mcity.point > chelsea.point && mcity.point > liverpool.point && mcity.point > arsenal.point)
@@ -441,16 +486,13 @@ document.getElementById('nextWeek').onclick = function(){
 				document.getElementById('nextWeek').innerHTML = 'start new season';
 
 				// reset
-				localStorage.clear();
+
 				startLeague();
 
 				resetObj(chelsea);
 				resetObj(mcity);
 				resetObj(liverpool);
 				resetObj(arsenal);
-
-				document.getElementById('firstMatch').innerHTML = '';
-				document.getElementById('secondMatch').innerHTML = '';
 
 				weekIndex = 0;
 			}else{
@@ -461,4 +503,10 @@ document.getElementById('nextWeek').onclick = function(){
 	}
 
 	localStorage.setItem('week', weekIndex);
+}
+
+// DOM manipulation
+
+if(localStorage.getItem('week') < 1){
+	document.getElementById('week').innerHTML = localStorage.getItem('week') + '. ';
 }
