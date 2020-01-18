@@ -64,6 +64,23 @@ if( window.localStorage.getItem('arsenal') || window.localStorage.getItem('mcity
 	objUpdate('liverpool', liverpool);
 	objUpdate('mcity', mcity);
 	objUpdate('arsenal', arsenal);
+
+	// DOM Manipulation
+	objectInfoAdd('chelsea', chelsea);
+	objectInfoAdd('liverpool', liverpool);
+	objectInfoAdd('mcity', mcity);
+	objectInfoAdd('arsenal', arsenal);
+}
+
+
+// dom added
+function objectInfoAdd(objName, object){
+	document.getElementById(objName + 'PTS').innerHTML = object.point;
+	document.getElementById(objName + 'P').innerHTML = object.played;
+	document.getElementById(objName + 'W').innerHTML = object.won;
+	document.getElementById(objName + 'D').innerHTML = object.drawn;
+	document.getElementById(objName + 'L').innerHTML = object.lost;
+	document.getElementById(objName + 'GD').innerHTML = object.goalFor - object.goalAgainst;
 }
 
 

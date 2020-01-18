@@ -50,6 +50,7 @@
 
 .fixtureDetails ul li:nth-child(1){
 	width: 122px;
+	text-align: left;
 }
 
 /*buttons*/
