@@ -305,10 +305,12 @@ function startLeague(){
 if(window.localStorage.getItem('fixture') == null)
 	startLeague();
 
+if(window.localStorage.getItem('week') != 1){
+	document.getElementById('infoWeek').innerHTML = '';
+	document.getElementById('week').innerHTML = 'Welcome again,<br> Will continue from week ' + localStorage.getItem('week');
+}
 
-
-// nextWeek function
-
+// nextWeek button function
 document.getElementById('nextWeek').onclick = function(){
 	document.getElementById('nextWeek').innerHTML = 'Next Week';
 	for(var i=0 ; i<=6 ; i++){
@@ -511,7 +513,7 @@ document.getElementById('nextWeek').onclick = function(){
 				resetObj(liverpool);
 				resetObj(arsenal);
 
-				weekIndex = 0;
+				weekIndex = 1;
 			}else{
 				weekIndex = i+1;
 				document.getElementById('championsTeam').innerHTML = '';
