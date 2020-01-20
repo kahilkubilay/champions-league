@@ -69,3 +69,45 @@
 #championsTeam{
 	margin-top: 10px;
 }
+
+/* possibility of championship */
+
+#possibilityChamp{
+	border: 1px solid olive;
+	width: 400px;
+	height: auto;
+	margin: 0 auto;
+}
+
+#champContainer{
+	display: inline-block;
+}
+
+#champContainer ul{
+	display: inline-block;
+	width: 400px;
+}
+
+#champContainer ul li{
+	padding: 5px;
+	text-align: left;
+}
+
+#info{
+}
+
+#champContainer ul li:nth-child(1){
+	text-align: center;
+}
+
+#champContainer ul li span:nth-child(1){
+	margin-left: 20px;
+}
+
+
+#champContainer ul li span:nth-child(2){
+	float: right;
+	margin-right: 20px;
+}
+
+
