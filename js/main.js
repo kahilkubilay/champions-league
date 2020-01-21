@@ -26,11 +26,8 @@ let chelsea = {
 		}
 	},
 	goalDiff: function() {
-		if(this.goalFor - this.goalAgainst < 0) {
-			return 0;
-		}else
-			return this.goalFor - this.goalAgainst;
-	}
+		return this.goalFor - this.goalAgainst;
+	},
 }
 
 let arsenal = {
@@ -60,11 +57,8 @@ let arsenal = {
 		}
 	},
 	goalDiff: function() {
-		if(this.goalFor - this.goalAgainst < 0){
-			return 0;
-		}else
-			return this.goalFor - this.goalAgainst;
-	}
+		return this.goalFor - this.goalAgainst;
+	},
 }
 
 let mcity = {
@@ -94,10 +88,7 @@ let mcity = {
 		}
 	},
 	goalDiff: function() {
-		if(this.goalFor - this.goalAgainst < 0) {
-			return 0;
-		}else
-			return this.goalFor - this.goalAgainst;
+		return this.goalFor - this.goalAgainst;
 	}
 }
 
@@ -128,11 +119,8 @@ let liverpool = {
 		}
 	},
 	goalDiff: function() {
-		if(this.goalFor - this.goalAgainst < 0){
-			return 0;
-		}else
-			return this.goalFor - this.goalAgainst;
-	}
+		return this.goalFor - this.goalAgainst;
+	},
 }
 
 if (window.localStorage.getItem('arsenal') || window.localStorage.getItem('mcity') ||  window.localStorage.getItem('chelsea') || window.localStorage.getItem('liverpool')) {
@@ -269,56 +257,60 @@ function playMatch(firstTeam, secondTeam) {
 		firstTeam.goalFor - firstTeam.goalAgainst > secondTeam.goalFor - secondTeam.goalAgainst ? firstTeamScore += 1 : secondTeamScore += 1;
 
 	if (firstTeamScore > secondTeamScore) {
-		winner(firstTeam, firstTeamScore, secondTeamScore);
-		lose(secondTeam, secondTeamScore, firstTeamScore);
-	} else if (firstTeamScore < secondTeamScore) {
-		winner(secondTeam, firstTeamScore, secondTeamScore);
-		lose(firstTeam, firstTeamScore, secondTeamScore);
-	} else if (firstTeamScore == secondTeamScore) {
-		drawn(firstTeam, secondTeam, firstTeamScore, secondTeamScore);
-	}
+		// change firstTeam information 
+		firstTeam.played += 1;
+		firstTeam.won += 1;
+		firstTeam.point += 3;
+		firstTeam.motivation += 5;
+		firstTeam.form += 2;
+		firstTeam.goalFor += firstTeamScore;
+		firstTeam.goalAgainst += secondTeamScore;
+		// change secondTeam information
+		secondTeam.played += 1;
+		secondTeam.lost += 1;
+		secondTeam.motivation -= 5;
+		secondTeam.form -= 2;
+		secondTeam.goalFor += secondTeamScore;
+		secondTeam.goalAgainst += firstTeamScore;
 
+	} else if (firstTeamScore < secondTeamScore) {
+		// change firstTeam information
+		firstTeam.played += 1;
+		firstTeam.lost += 1;
+		firstTeam.motivation -= 5;
+		firstTeam.form -= 2;
+		firstTeam.goalFor += firstTeamScore;
+		firstTeam.goalAgainst += secondTeamScore;
+		// change secondTeam information 
+		secondTeam.played += 1;
+		secondTeam.won += 1;
+		secondTeam.point += 3;
+		secondTeam.motivation += 5;
+		secondTeam.form += 2;
+		secondTeam.goalFor += secondTeamScore;
+		secondTeam.goalAgainst += firstTeamScore;
+	} else if (firstTeamScore == secondTeamScore) {
+		// change firstTeam information 
+		firstTeam.played += 1;
+		firstTeam.point += 1;
+		firstTeam.drawn += 1;
+		firstTeam.motivation += 1;
+		firstTeam.form += 1;
+		firstTeam.goalFor += firstTeamScore;
+		firstTeam.goalAgainst += secondTeamScore;
+		// change secondTeam information
+		secondTeam.played += 1;
+		secondTeam.point += 1;
+		secondTeam.drawn += 1;
+		secondTeam.motivation += 1;
+		secondTeam.form += 1;
+		secondTeam.goalFor += secondTeamScore;
+		secondTeam.goalAgainst += firstTeamScore;
+	}
 	window.localStorage.setItem('arsenal', JSON.stringify(arsenal));
 	window.localStorage.setItem('mcity', JSON.stringify(mcity));
 	window.localStorage.setItem('liverpool', JSON.stringify(liverpool));
 	window.localStorage.setItem('chelsea', JSON.stringify(chelsea));
-}
-
-// winner & lost team
-function winner(teamName, firstTeamScore, secondTeamScore) {
-	teamName.played += 1;
-	teamName.won += 1;
-	teamName.point += 3;
-	teamName.motivation += 5;
-	teamName.form += 2;
-	teamName.goalFor += secondTeamScore;
-	teamName.goalAgainst += firstTeamScore;
-}
-
-function lose(teamName, secondTeamScore, firstTeamScore) {
-	teamName.played += 1;
-	teamName.lost += 1;
-	teamName.motivation -= 5;
-	teamName.form -= 2;
-	teamName.goalFor += secondTeamScore;
-	teamName.goalAgainst += firstTeamScore;
-}
-
-function drawn(firstTeamName, secondTeamName, firstTeamScore, secondTeamScore) {
-	firstTeamName.played += 1;
-	firstTeamName.point += 1;
-	firstTeamName.drawn += 1;
-	firstTeamName.motivation += 1;
-	firstTeamName.form += 1;
-	secondTeamName.played += 1;
-	secondTeamName.point += 1;
-	secondTeamName.drawn += 1;
-	secondTeamName.motivation += 1;
-	secondTeamName.form += 1;
-	firstTeamName.goalFor += secondTeamScore;
-	firstTeamName.goalAgainst += firstTeamScore;
-	secondTeamName.goalFor += firstTeamScore;
-	secondTeamName.goalAgainst += secondTeamScore;
 }
 
 function leagueOrder(obj1, obj2, obj3, obj4) {
