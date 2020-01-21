@@ -358,7 +358,7 @@ function leagueOrder(obj1, obj2, obj3, obj4) {
 
 	document.getElementById('possibilityContainer').style.display = 'block';
 	document.getElementsByClassName('championsTeam')[0].style.display = 'block';
-	document.getElementById('championsTeam').innerHTML = 'Şampiyonluğun en yakın adayı ' + newOrder[0].name + ' olarak gözüküyor. En yakın takipçisi ' + newOrder[1].name;
+	document.getElementById('championsTeam').innerHTML = 'The closest candidate of the championship seems to be ' + newOrder[0].name + ' . The closest follower is ' + newOrder[1].name;
 	document.getElementById('info').innerHTML = window.localStorage.getItem('week') + '. Predictions of Championship';
 
 	for(var i=0 ; i<newOrder.length ; i++) {
