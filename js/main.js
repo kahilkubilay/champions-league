@@ -123,6 +123,47 @@ let liverpool = {
 	},
 }
 
+// DOM added
+function objectInfoAdd(obj1, obj2, obj3, obj4) {
+
+	obj1 = JSON.parse(window.localStorage.getItem('chelsea'));
+	obj2 = JSON.parse(window.localStorage.getItem('mcity'));
+	obj3 = JSON.parse(window.localStorage.getItem('liverpool'));
+	obj4 = JSON.parse(window.localStorage.getItem('arsenal'));
+
+	let order = [obj1, obj2, obj3, obj4];
+	let newOrder = [];
+	var maxValue = 0;
+	var index = 0;
+
+	do {
+		for(var i=0 ; i<order.length ; i++) {
+			if(maxValue <= order[i].point) {
+				maxValue = order[i].point;
+				index = i;
+			}
+		}
+
+		newOrder.push(order[index]);	
+		order.splice(index, 1);
+		maxValue = 0;
+
+	}while(order.length != 0);
+
+	for(var i=0 ; i<4 ; i++){
+		var index = i+1;
+
+		document.getElementById('fixImg' + index).src = 'img/' + newOrder[i].logo;
+		document.getElementById('fixName' + index).innerHTML = newOrder[i].name;	
+		document.getElementById('fixPTS' + index).innerHTML = newOrder[i].point;	
+		document.getElementById('fixP' + index).innerHTML = newOrder[i].played;	
+		document.getElementById('fixW' + index).innerHTML = newOrder[i].won;	
+		document.getElementById('fixD' + index).innerHTML = newOrder[i].drawn;	
+		document.getElementById('fixL' + index).innerHTML = newOrder[i].lost;	
+		document.getElementById('fixGD' + index).innerHTML = newOrder[i].goalFor - newOrder[i].goalAgainst;	
+	}
+}
+
 if (window.localStorage.getItem('arsenal') || window.localStorage.getItem('mcity') ||  window.localStorage.getItem('chelsea') || window.localStorage.getItem('liverpool')) {
 	objUpdate('chelsea', chelsea);
 	objUpdate('liverpool', liverpool);
@@ -130,20 +171,7 @@ if (window.localStorage.getItem('arsenal') || window.localStorage.getItem('mcity
 	objUpdate('arsenal', arsenal);
 
 	// DOM Manipulation
-	objectInfoAdd('chelsea', chelsea);
-	objectInfoAdd('liverpool', liverpool);
-	objectInfoAdd('mcity', mcity);
-	objectInfoAdd('arsenal', arsenal);
-}
-
-// dom added
-function objectInfoAdd(objName, object) {
-	document.getElementById(objName + 'PTS').innerHTML = object.point;
-	document.getElementById(objName + 'P').innerHTML = object.played;
-	document.getElementById(objName + 'W').innerHTML = object.won;
-	document.getElementById(objName + 'D').innerHTML = object.drawn;
-	document.getElementById(objName + 'L').innerHTML = object.lost;
-	document.getElementById(objName + 'GD').innerHTML = object.goalDiff();
+	objectInfoAdd(chelsea, mcity, liverpool, arsenal);
 }
 
 // object update
@@ -516,7 +544,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
-
+					objectInfoAdd(chelsea, mcity, liverpool, arsenal);
 					break;
 				case 2:
 					// second week
@@ -539,7 +567,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
-
+					objectInfoAdd(chelsea, mcity, liverpool, arsenal);
 					break;
 				case 3:
 					// third week
@@ -562,6 +590,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
+					objectInfoAdd(chelsea, mcity, liverpool, arsenal);
 					break;
 				case 4:
 					// fourth week
@@ -584,6 +613,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
+					objectInfoAdd(chelsea, mcity, liverpool, arsenal);
 					break;
 				case 5:
 					// fifth week
@@ -606,6 +636,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
+					objectInfoAdd(chelsea, mcity, liverpool, arsenal);
 					break;
 				case 6:
 					// sixth week
@@ -630,6 +661,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
+					objectInfoAdd(chelsea, mcity, liverpool, arsenal);
 					break;
 				default:
 			}
@@ -640,39 +672,6 @@ document.getElementById('nextWeek').onclick = function (e) {
 			}else if(window.localStorage.getItem('week') == 5) {
 				leagueOrder(chelsea, liverpool, mcity, arsenal);
 			}
-
-			// DOM Manipulation
-			// chelsea
-			document.getElementById("chelseaPTS").innerHTML = chelsea.point;
-			document.getElementById("chelseaP").innerHTML = chelsea.played;
-			document.getElementById("chelseaW").innerHTML = chelsea.won;
-			document.getElementById("chelseaD").innerHTML = chelsea.drawn;
-			document.getElementById("chelseaL").innerHTML = chelsea.lost;
-			document.getElementById("chelseaGD").innerHTML = chelsea.goalDiff();
-
-			// mcity
-			document.getElementById("mcityPTS").innerHTML = mcity.point;
-			document.getElementById("mcityP").innerHTML = mcity.played;
-			document.getElementById("mcityW").innerHTML = mcity.won;
-			document.getElementById("mcityD").innerHTML = mcity.drawn;
-			document.getElementById("mcityL").innerHTML = mcity.lost;
-			document.getElementById("mcityGD").innerHTML = mcity.goalDiff();
-
-			// arseal
-			document.getElementById("arsenalPTS").innerHTML = arsenal.point;
-			document.getElementById("arsenalP").innerHTML = arsenal.played;
-			document.getElementById("arsenalW").innerHTML = arsenal.won;
-			document.getElementById("arsenalD").innerHTML = arsenal.drawn;
-			document.getElementById("arsenalL").innerHTML = arsenal.lost;
-			document.getElementById("arsenalGD").innerHTML = arsenal.goalDiff();
-
-			// liverpool
-			document.getElementById("liverpoolPTS").innerHTML = liverpool.point;
-			document.getElementById("liverpoolP").innerHTML = liverpool.played;
-			document.getElementById("liverpoolW").innerHTML = liverpool.won;
-			document.getElementById("liverpoolD").innerHTML = liverpool.drawn;
-			document.getElementById("liverpoolL").innerHTML = liverpool.lost;
-			document.getElementById("liverpoolGD").innerHTML = liverpool.goalDiff();
 
 			if (window.localStorage.getItem('week') == 6) {
 
@@ -724,7 +723,6 @@ document.getElementById('nextWeek').onclick = function (e) {
 						}else{
 							document.getElementById('championsTeam').innerHTML = newOrder[0].name + ' and ' + newOrder[1].name + ' share first place';
 						}
-
 				}
 
 				document.getElementById('nextWeek').innerHTML = 'start new season';
@@ -743,7 +741,6 @@ document.getElementById('nextWeek').onclick = function (e) {
 			}
 		}
 	}
-
 	window.localStorage.setItem('week', weekIndex);
 }
 
@@ -833,37 +830,7 @@ document.getElementById('playAll').onclick = function (e) {
 			}
 
 			// DOM Manipulation
-			// chelsea
-			document.getElementById("chelseaPTS").innerHTML = chelsea.point;
-			document.getElementById("chelseaP").innerHTML = chelsea.played;
-			document.getElementById("chelseaW").innerHTML = chelsea.won;
-			document.getElementById("chelseaD").innerHTML = chelsea.drawn;
-			document.getElementById("chelseaL").innerHTML = chelsea.lost;
-			document.getElementById("chelseaGD").innerHTML = chelsea.goalDiff();
-
-			// mcity
-			document.getElementById("mcityPTS").innerHTML = mcity.point;
-			document.getElementById("mcityP").innerHTML = mcity.played;
-			document.getElementById("mcityW").innerHTML = mcity.won;
-			document.getElementById("mcityD").innerHTML = mcity.drawn;
-			document.getElementById("mcityL").innerHTML = mcity.lost;
-			document.getElementById("mcityGD").innerHTML = mcity.goalDiff();
-
-			// arseal
-			document.getElementById("arsenalPTS").innerHTML = arsenal.point;
-			document.getElementById("arsenalP").innerHTML = arsenal.played;
-			document.getElementById("arsenalW").innerHTML = arsenal.won;
-			document.getElementById("arsenalD").innerHTML = arsenal.drawn;
-			document.getElementById("arsenalL").innerHTML = arsenal.lost;
-			document.getElementById("arsenalGD").innerHTML = arsenal.goalDiff();
-
-			// liverpool
-			document.getElementById("liverpoolPTS").innerHTML = liverpool.point;
-			document.getElementById("liverpoolP").innerHTML = liverpool.played;
-			document.getElementById("liverpoolW").innerHTML = liverpool.won;
-			document.getElementById("liverpoolD").innerHTML = liverpool.drawn;
-			document.getElementById("liverpoolL").innerHTML = liverpool.lost;
-			document.getElementById("liverpoolGD").innerHTML = liverpool.goalDiff();
+			objectInfoAdd(chelsea, mcity, liverpool, arsenal);
 
 			// DOM manipulation
 			document.getElementById('infoWeek').innerHTML = '';
@@ -930,7 +897,6 @@ document.getElementById('playAll').onclick = function (e) {
 		resetObj(mcity);
 		resetObj(liverpool);
 		resetObj(arsenal);
-
 	}
 	window.localStorage.setItem('week', 1);
 }
