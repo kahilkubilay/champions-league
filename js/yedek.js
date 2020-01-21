@@ -13,7 +13,6 @@ let chelsea = {
 	goalFor: 0,
 	goalAgainst: 0,
 	possibility: 0,
-	logo: 'chelseaLogo.png',
 	possibilityVar: function(){
 
 		if(this.motivation < 0 && this.form < 0) {
@@ -27,7 +26,6 @@ let chelsea = {
 		}
 
 	},
-	
 }
 
 let arsenal = {
@@ -44,7 +42,6 @@ let arsenal = {
 	goalFor: 0,
 	goalAgainst: 0,
 	possibility: 0,
-	logo: 'arsenalLogo.png',
 	possibilityVar: function(){
 		
 		if(this.motivation < 0 && this.form < 0) {
@@ -58,7 +55,6 @@ let arsenal = {
 		}
 
 	},
-	
 }
 
 let mcity = {
@@ -75,7 +71,6 @@ let mcity = {
 	goalFor: 0,
 	goalAgainst: 0,
 	possibility: 0,
-	logo: 'mcityLogo.png',
 	possibilityVar: function(){
 		
 		if(this.motivation < 0 && this.form < 0) {
@@ -89,7 +84,6 @@ let mcity = {
 		}
 
 	},
-	
 }
 
 let liverpool = {
@@ -106,7 +100,6 @@ let liverpool = {
 	goalFor: 0,
 	goalAgainst: 0,
 	possibility: 0,
-	logo: 'liverpoolLogo.png',
 	possibilityVar: function(){
 		
 		if(this.motivation < 0 && this.form < 0) {
@@ -120,7 +113,6 @@ let liverpool = {
 		}
 
 	},
-	
 }
 
 if (window.localStorage.getItem('arsenal') || window.localStorage.getItem('mcity') ||  window.localStorage.getItem('chelsea') || window.localStorage.getItem('liverpool')) {
@@ -318,42 +310,40 @@ function leagueOrder(obj1, obj2, obj3, obj4){
 	obj3.possibility = Math.round((obj3.possibilityVar() * 100) / percentTotalVal);
 	obj4.possibility = Math.round((obj4.possibilityVar() * 100) / percentTotalVal);
 
-	var totalVal = obj1.possibility + obj2.possibility + obj3.possibility + obj4.possibility;
-	var diff = 100 - totalVal;
-
-	if(totalVal != 100){
-		console.warn('Sayıların yuvarlanmalarından dolayı (+-)' + diff + ' çıkabilir.' );
-	}
-
 	let order = [obj1, obj2, obj3, obj4];
 	let newOrder = [];
 	var maxValue = 0;
 	var index = 0;
 
-	do {
+
+	do{
+
 		for(var i=0 ; i<order.length ; i++){
+
 			if(maxValue <= order[i].possibility){
 				maxValue = order[i].possibility;
 				index = i;
 			}
+
 		}
 
 		newOrder.push(order[index]);	
 		order.splice(index, 1);
 		maxValue = 0;
 
+
+
 	}while(order.length != 0);
 
-	document.getElementById('possibilityContainer').style.display = 'block';
-	document.getElementsByClassName('championsTeam')[0].style.display = 'block';
-	document.getElementById('championsTeam').innerHTML = 'Şampiyonluğun en yakın adayı ' + newOrder[0].name + ' olarak gözüküyor. En yakın takipçisi ' + newOrder[1].name;
-	document.getElementById('info').innerHTML = window.localStorage.getItem('week') + '. Predictions of Championship';
+	document.getElementById('info').innerHTML = '';
 
 	for(var i=0 ; i<newOrder.length ; i++){
-		document.getElementById('posLogo' + i).innerHTML = '<img src=img/' + newOrder[i].logo + ' class="logo">';
+
 		document.getElementById('posTeam' + i).innerHTML = newOrder[i].name;
 		document.getElementById('pos' + i).innerHTML = '%' + newOrder[i].possibility.toFixed(0);
+
 	}
+
 
 }
 
@@ -416,71 +406,14 @@ function startLeague() {
 if (window.localStorage.getItem('fixture') == null)
 	startLeague();
 
-if(window.localStorage.getItem('week') == 1) {
-
-	let fixtureWeek = window.localStorage.getItem('fixture');
-	fixtureWeek = JSON.parse(fixtureWeek);
-
-	document.getElementById('firstMatch').innerHTML = fixtureWeek.firstWeek[0] + ' - ' + fixtureWeek.firstWeek[1];
-	document.getElementById('secondMatch').innerHTML = fixtureWeek.firstWeek[2] + ' - ' + fixtureWeek.firstWeek[3];
-
-}else if(window.localStorage.getItem('week') != 1) {
+if (window.localStorage.getItem('week') != 1) {
 	document.getElementById('infoWeek').innerHTML = '';
-	document.getElementById('week').innerHTML = 'Welcome again, will continue from week ' + window.localStorage.getItem('week');
-
-	for(var i=1 ; i<=6 ; i++){
-		
-		if(window.localStorage.getItem('week') == i){
-			let fixtureWeek = window.localStorage.getItem('fixture');
-			fixtureWeek = JSON.parse(fixtureWeek);
-
-			switch(i){
-				case 2:
-					document.getElementById('firstMatch').innerHTML = fixtureWeek.secondWeek[0] + ' - ' + fixtureWeek.secondWeek[1];
-					document.getElementById('secondMatch').innerHTML = fixtureWeek.secondWeek[2] + ' - ' + fixtureWeek.secondWeek[3];
-					break;
-				case 3:
-					document.getElementById('firstMatch').innerHTML = fixtureWeek.thirdWeek[0] + ' - ' + fixtureWeek.thirdWeek[1];
-					document.getElementById('secondMatch').innerHTML = fixtureWeek.thirdWeek[2] + ' - ' + fixtureWeek.thirdWeek[3];
-					break;
-				case 4:
-					document.getElementById('firstMatch').innerHTML = fixtureWeek.fourthWeek[0] + ' - ' + fixtureWeek.fourthWeek[1];
-					document.getElementById('secondMatch').innerHTML = fixtureWeek.fourthWeek[2] + ' - ' + fixtureWeek.fourthWeek[3];
-					break;
-				case 5:
-					document.getElementById('firstMatch').innerHTML = fixtureWeek.fifthWeek[0] + ' - ' + fixtureWeek.fifthWeek[1];
-					document.getElementById('secondMatch').innerHTML = fixtureWeek.fifthWeek[2] + ' - ' + fixtureWeek.fifthWeek[3];
-					break;
-				case 6: 
-					document.getElementById('firstMatch').innerHTML = fixtureWeek.sixthWeek[0] + ' - ' + fixtureWeek.sixthWeek[1];
-					document.getElementById('secondMatch').innerHTML = fixtureWeek.sixthWeek[2] + ' - ' + fixtureWeek.sixthWeek[3];
-					break;
-				default:
-			}
-		}
-	}
-}
-
-// reset button function
-document.getElementById('reset').onclick = function(e) {
-
-		resetObj(chelsea);
-		resetObj(mcity);
-		resetObj(liverpool);
-		resetObj(arsenal);
-
-		window.localStorage.clear();
-
-		startLeague();
-
-		location.reload();
-
+	document.getElementById('week').innerHTML = 'Welcome again,<br> Will continue from week ' + window.localStorage.getItem('week');
 }
 
 // nextWeek button function
 document.getElementById('nextWeek').onclick = function (e) {
 	document.getElementById('nextWeek').innerHTML = 'Next Week';
-	document.getElementById('championArea').style.backgroundColor = '#FFFFFF';
 
 	for (var i = 0; i <= 6; i++) {
 		if (window.localStorage.getItem('week') == i) {
@@ -500,8 +433,9 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 					// DOM manipulation
 					document.getElementById('infoWeek').innerHTML = '';
-					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week';
+					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week Match Result';
 					document.getElementById('firstMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
+
 					// second match
 					var matchFirstTeam = fixtureWeek.firstWeek[2];
 					var matchSecondTeam = fixtureWeek.firstWeek[3];
@@ -510,7 +444,6 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 					// DOM manipulation
 					document.getElementById('secondMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
-
 					break;
 				case 2:
 					// second week
@@ -522,7 +455,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 					playMatch(matchFirstTeam, matchSecondTeam);
 
 					// DOM manipulation
-					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week';
+					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week Match Result';
 					document.getElementById('firstMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 
 					// second match
@@ -545,7 +478,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 					playMatch(matchFirstTeam, matchSecondTeam);
 
 					// DOM manipulation
-					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week';
+					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week Match Result';
 					document.getElementById('firstMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 
 					// second match
@@ -567,7 +500,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 					playMatch(matchFirstTeam, matchSecondTeam);
 
 					// DOM manipulation
-					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week';
+					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week Match Result';
 					document.getElementById('firstMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 
 					// second match
@@ -589,7 +522,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 					playMatch(matchFirstTeam, matchSecondTeam);
 
 					// DOM manipulation
-					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week';
+					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week Match Result';
 					document.getElementById('firstMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 
 					// second match
@@ -604,8 +537,6 @@ document.getElementById('nextWeek').onclick = function (e) {
 				case 6:
 					// sixth week
 
-					document.getElementById('possibilityContainer').style.display = 'none';
-
 					// first match
 					var matchFirstTeam = fixtureWeek.sixthWeek[0];
 					var matchSecondTeam = fixtureWeek.sixthWeek[1];
@@ -613,7 +544,7 @@ document.getElementById('nextWeek').onclick = function (e) {
 					playMatch(matchFirstTeam, matchSecondTeam);
 
 					// DOM manipulation
-					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week';
+					document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. Week Match Result';
 					document.getElementById('firstMatch').innerHTML = matchFirstTeam + ': ' + firstTeamScore + ' - ' + secondTeamScore + ' :' + matchSecondTeam;
 
 					// second match
@@ -696,37 +627,30 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 			if (window.localStorage.getItem('week') == 6) {
 
-				document.getElementById('championArea').style.backgroundColor = '#28A745';
-
 				// Champion team
-				if (chelsea.point > mcity.point && chelsea.point > liverpool.point && chelsea.point > arsenal.point) {
-					document.getElementsByClassName('championsTeamLogo')[0].src = 'img/chelseaLogo.png';
+				if (chelsea.point > mcity.point && chelsea.point > liverpool.point && chelsea.point > arsenal.point)
 					document.getElementById('championsTeam').innerHTML = 'Chelsea <br> is the champion of the season';
-				}else if (mcity.point > chelsea.point && mcity.point > liverpool.point && mcity.point > arsenal.point) {
-					document.getElementsByClassName('championsTeamLogo')[0].src = 'img/mcityLogo.png';
+				else if (mcity.point > chelsea.point && mcity.point > liverpool.point && mcity.point > arsenal.point)
 					document.getElementById('championsTeam').innerHTML = 'Manchester City <br> is the champion of the season';
-				}
-				else if (liverpool.point > mcity.point && liverpool.point > chelsea.point && liverpool.point > arsenal.point) {
-					document.getElementsByClassName('championsTeamLogo')[0].src = 'img/liverpoolLogo.png';
+				else if (liverpool.point > mcity.point && liverpool.point > chelsea.point && liverpool.point > arsenal.point)
 					document.getElementById('championsTeam').innerHTML = 'Liverpool <br> is the champion of the season';
-				}else if (arsenal.point > mcity.point && arsenal.point > chelsea.point && arsenal.point > liverpool.point) {
-					document.getElementsByClassName('championsTeamLogo')[0].src = 'img/arsenalLogo.png';
+				else if (arsenal.point > mcity.point && arsenal.point > chelsea.point && arsenal.point > liverpool.point)
 					document.getElementById('championsTeam').innerHTML = 'Arsenal <br> is the champion of the season';
-				}
 
 				document.getElementById('nextWeek').innerHTML = 'start new season';
 
 				// reset
+				startLeague();
+
 				resetObj(chelsea);
 				resetObj(mcity);
 				resetObj(liverpool);
 				resetObj(arsenal);
-				startLeague();
 
 				weekIndex = 1;
 			} else {
 				weekIndex = i + 1;
-
+				document.getElementById('championsTeam').innerHTML = '';
 			}
 		}
 	}
@@ -736,8 +660,6 @@ document.getElementById('nextWeek').onclick = function (e) {
 
 // playAll button function 
 document.getElementById('playAll').onclick = function (e) {
-	document.getElementById('championArea').style.backgroundColor = '#FFFFFF';
-	document.getElementsByClassName('championsTeamLogo')[0].src = 'img/logo.png';
 	// catch week
 	for (var i = 0; i < 6; i++) {
 		if (window.localStorage.getItem('week') == i) {
@@ -856,7 +778,7 @@ document.getElementById('playAll').onclick = function (e) {
 
 			// DOM manipulation
 			document.getElementById('infoWeek').innerHTML = '';
-			document.getElementById('week').innerHTML = 6 + '. Week';
+			document.getElementById('week').innerHTML = 6 + '. Week Match Result';
 
 			// Champion team
 			if (chelsea.point > mcity.point && chelsea.point > liverpool.point && chelsea.point > arsenal.point)
@@ -890,3 +812,4 @@ document.getElementById('playAll').onclick = function (e) {
 if (window.localStorage.getItem('week') < 1) {
 	document.getElementById('week').innerHTML = window.localStorage.getItem('week') + '. ';
 }
+

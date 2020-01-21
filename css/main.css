@@ -4,110 +4,120 @@
 	padding: 0;
 	list-style-type: none;
 	color: #000;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
-/* container */
-.leagueContainer{
-	width: 800px;
-	height: 200px;
-	border: 1px solid gray;
-	margin: 50px auto;
-	position: relative;
+body{
+	background-color: #F2F2F2;
 }
 
-.mathResult{
-	text-align: center;
+/*nav*/
+.navbar{
+	background-color: #28A745;
 }
 
-.resultHeader{
-	margin-bottom: 15px;
+.caption{
+	color: #1D1D1B;
 }
 
-.leagueHeader span{
-	display: inline-block;
-	float: left;
-	width: 398px;
-	text-align: center;
-	border: 1px solid gray;
+.logo-navbar{
+	width: 75px;
 }
 
-/* fixture details */
-.fixtureDetails{
-	width: 399px;
-	margin-top: 3px;
-	float: left;
+.logo{
+	width: 25px;
 }
 
-.fixtureDetails ul li{
-	float: left;
-	border: 1px solid gray;
-	border-left: 0;
-	width: 45px;
-	height: 25px;
-	text-align: center;
-	line-height: 1.5;
-}
-
-.fixtureDetails ul li:nth-child(1){
-	width: 122px;
-	text-align: left;
-}
-
-/*buttons*/
-#playAll{
+.header-clear-button{
+	background-color: #1D1D1B;
 	position: absolute;
-	left: 0;
-	bottom: 0;
+	right: 25px;
+	width: 120px;
 }
 
-#nextWeek{
-	position: absolute;;
-	right: 0;
-	bottom: 0;
+/*score history*/
+.list-group{
+
 }
 
-#championsTeam{
-	margin-top: 10px;
+.list-group li:nth-child(1){
+	font-size: 14px;
+	background-color: #F2F2F2;
 }
 
-/* possibility of championship */
-
-#possibilityChamp{
-	border: 1px solid olive;
-	width: 400px;
-	height: auto;
-	margin: 0 auto;
+.list-group li:nth-child(2){
+	font-weight: bold;
 }
 
-#champContainer{
-	display: inline-block;
+
+.list-group li{
+	font-size: 16px;
 }
 
-#champContainer ul{
-	display: inline-block;
-	width: 400px;
+.season{
+	font-size: 16px;
 }
 
-#champContainer ul li{
-	padding: 5px;
-	text-align: left;
+/* match result */
+.match-result{
+	margin-top: 50px;
+
 }
 
-#info{
+.match-result li:nth-child(1){
+	font-weight: bold;
+	font-size: 16px;
+	background-color: #FFF;
 }
 
-#champContainer ul li:nth-child(1){
+.match-result li span{
+	float: right;
+}
+
+#firstMatch, #secondMatch{
 	text-align: center;
 }
 
-#champContainer ul li span:nth-child(1){
-	margin-left: 20px;
+.match-result-table tbody tr{
+	width: 800px!important;
+	background-color: olive;
 }
 
+.play-all-button, .next-week-button{
+	background: #F2F2F2;
+}
 
-#champContainer ul li span:nth-child(2){
-	float: right;
-	margin-right: 20px;
+.play-all-button .card, .next-week-button .card{
+	background-color: #F2F2F2;
+	border:0;
+}
+
+.row{
+	margin-bottom: 50px;
+}
+
+#playAll, #nextWeek{
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+.championsTeam{
+	display: none;
+	text-align: center;
+}
+
+.championsTeam .logo{
+	float: left;
+	width: 50px;
+}
+
+/* match result */
+
+
+/*possibility*/
+#possibilityContainer{
+	display: none;
 }
 
 

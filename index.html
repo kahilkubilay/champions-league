@@ -3,101 +3,185 @@
 <head>
 	<title>Vairosoft | Champions League</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<style type="text/css">
 		@import'css/main.css';
 	</style>
 </head>
 <body>
 
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-lg">
+  		<a class="navbar-brand" href="#"><img class="logo-navbar" src="img/logo.png"></a>
+ 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  		</button>
+
+  		<h4 class="caption">UEFA Champions League</h4>
+  		<button id="reset" type="button" class="btn btn-dark header-clear-button">Reset</button>
+  
+	</nav>	
+	<!-- navbar -->
+	
+	<!-- elements container -->
 	<div class="container">
-		<!-- League fixture -->
-		<div class="leagueContainer">
-			<div class="leagueHeader">
-				<span>League Table</span>			
-				<span>Match Result</span>			
-			</div>
-			<div class="fixtureDetails">
-				<!-- all teams -->
-				<ul class="fixtureVar">
-					<li>Teams</li>
-					<li>PTS</li>
-					<li>P</li>
-					<li>W</li>
-					<li>D</li>
-					<li>L</li>
-					<li>GD</li>
-				</ul>
-				<!-- teams -->
-				<ul class="fixtureVar">
-					<li id="chelsea">Chelsea</li>
-					<li id="chelseaPTS">0</li>
-					<li id="chelseaP">0</li>
-					<li id="chelseaW">0</li>
-					<li id="chelseaD">0</li>
-					<li id="chelseaL">0</li>
-					<li id="chelseaGD">0</li>
-				</ul>
-				<ul class="fixtureVar">
-					<li id="mcity">M.City</li>
-					<li id="mcityPTS">0</li>
-					<li id="mcityP">0</li>
-					<li id="mcityW">0</li>
-					<li id="mcityD">0</li>
-					<li id="mcityL">0</li>
-					<li id="mcityGD">0</li>
-				</ul>
-				<ul class="fixtureVar">
-					<li id="liverpool">Liverpool</li>
-					<li id="liverpoolPTS">0</li>
-					<li id="liverpoolP">0</li>
-					<li id="liverpoolW">0</li>
-					<li id="liverpoolD">0</li>
-					<li id="liverpoolL">0</li>
-					<li id="liverpoolGD">0</li>
-				</ul>
-				<ul class="fixtureVar">
-					<li id="arsenal">Arsenal</li>
-					<li id="arsenalPTS">0</li>
-					<li id="arsenalP">0</li>
-					<li id="arsenalW">0</li>
-					<li id="arsenalD">0</li>
-					<li id="arsenalL">0</li>
-					<li id="arsenalGD">0</li>
-				</ul>														
-			</div>
+		<!-- table information -->
+		<ul class="list-group">
+		  <li class="list-group-item disabled" aria-disabled="true">Sezon <br><span class="season">2019-20</span></li>
+		  <li class="list-group-item">A Group</li>
+		</ul>
+		<!-- table information -->
 
-			<!-- Match Result -->
-			<div class="mathResult">
-				<div class="resultHeader"><span id="week"> </span><span id="infoWeek">use the buttons to start the new season.</span></div>
-				<div id="firstMatch"></div>
-				<div id="secondMatch"></div>
-				<div id="championsTeam"></div>
-			</div>
+		<!-- score history -->
+		<table class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col" title="buraya logo gelcek"></th>
+		      <th scope="col" title="">Teams</th>
+		      <th scope="col" title="Scores of the teams">PTS</th>
+		      <th scope="col" title="Total matches played by teams">P</th>
+		      <th scope="col" title="Total matches won by the teams">W</th>
+		      <th scope="col" title="Total matches drawn by the teams">D</th>
+		      <th scope="col" title="Total matches lost by the teams">L</th>
+		      <th scope="col" title="Average information">GD</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th scope="row">1</th>
+		      <td><img src="img/chelseaLogo.png" class="logo"></td>
+		      <td id="chelsea">Chelsea</td>
+		      <td id="chelseaPTS">0</td>
+		      <td id="chelseaP">0</td>
+		      <td id="chelseaW">0</td>
+		      <td id="chelseaD">0</td>
+		      <td id="chelseaL">0</td>
+		      <td id="chelseaGD">0</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">2</th>
+		      <td><img src="img/mcityLogo.png" class="logo"></td>
+		      <td id="mcity">Manchester City</td>
+		      <td id="mcityPTS">0</td>
+		      <td id="mcityP">0</td>
+		      <td id="mcityW">0</td>
+		      <td id="mcityD">0</td>
+		      <td id="mcityL">0</td>
+		      <td id="mcityGD">0</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">3</th>
+		      <td><img src="img/liverpoolLogo.png" class="logo"></td>
+		      <td id="liverpool">Liverpool</td>
+		      <td id="liverpoolPTS">0</td>
+		      <td id="liverpoolP">0</td>
+		      <td id="liverpoolW">0</td>
+		      <td id="liverpoolD">0</td>
+		      <td id="liverpoolL">0</td>
+		      <td id="liverpoolGD">0</td>
+		    </tr>
+		    <th scope="row">4</th>
+		      <td><img src="img/arsenalLogo.png" class="logo"></td>
+		      <td id="arsenal">Arsenal</td>
+		      <td id="arsenalPTS">0</td>
+		      <td id="arsenalP">0</td>
+		      <td id="arsenalW">0</td>
+		      <td id="arsenalD">0</td>
+		      <td id="arsenalL">0</td>
+		      <td id="arsenalGD">0</td>
+		  </tbody>
+		</table>
+		<!-- score history -->
 
-			<button id="playAll">Play All</button>
-			<button id="nextWeek">Next Week</button>
+		<!-- match result -->
+		<ul class="list-group match-result">
+			<li class="list-group-item">
+				Match Result 
+				<span id="week"></span>
+				<span id="infoWeek">use the buttons to start the new season.</span>
+			</li>
+		</ul>
 
-		</div>
-	</div>
+		<div class="row">
+  			<div class="col-sm-6">
+    			<div class="card">
+      				<div class="card-body">
+						<div id="firstMatch"></div>
+					</div>
+      			</div>
+    		</div>
+  			<div class="col-sm-6">
+    			<div class="card">
+      				<div class="card-body">
+        				<div id="secondMatch"></div>
+      				</div>
+    			</div>
+  			</div>
+	  		<div class="col-sm-6 next-week-button">
+	    		<div class="card">
+	      			<div class="card-body">
+						<button id="nextWeek" type="button" class="btn btn-dark header-clear-button">Next Week</button>
+					</div>
+	      		</div>
+	    	</div>
+	  		<div class="col-sm-6 play-all-button">
+	    		<div class="card">
+	      			<div class="card-body">
+	        			<button id="playAll" type="button" class="btn btn-dark header-clear-button">Play All</button>
+	      			</div>
+	    		</div>
+	  		</div>  			
+  			<div class="col-sm-12 championsTeam">
+    			<div id="championArea" class="card">
+      				<div class="card-body">
+        				<img src="img/logo.png" class="logo championsTeamLogo"><div id="championsTeam"></div>
+      				</div>
+    			</div>
+  			</div>
+		</div>			
+		<!-- match result -->
 
-	<!-- possibility of championship -->
-	<div id="possibilityChamp">
-		
-		<div id="champContainer">
-			<ul>
-				<li id="info">Championship possibilities are determined in the 4th and 5th weeks</li>
-				<li><span id="posTeam0"></span><span id="pos0"></span></li>
-				<li><span id="posTeam1"></span><span id="pos1"></span></li>
-				<li><span id="posTeam2"></span><span id="pos2"></span></li>
-				<li><span id="posTeam3"></span><span id="pos3"></span></li>
+		<!-- possibility of championship -->
+		<div id="possibilityContainer">
+			<ul class="list-group possibility match-result">
+				<li class="list-group-item" id="info"></li>
 			</ul>
 
+			<table class="table table-hover">
+			  <tbody>
+			    <tr>
+			      <td id="posLogo0"></td>
+			      <td id="posTeam0"></td>
+			      <td id="pos0"></td>
+			    </tr>
+			    <tr>
+			      <td id="posLogo1"></td>
+			      <td id="posTeam1"></td>
+			      <td id="pos1"></td>
+			    </tr>
+			    <tr>
+			      <td id="posLogo2"></td>
+			      <td id="posTeam2"></td>
+			      <td id="pos2"></td>
+			    </tr>
+			    <tr>
+			      <td id="posLogo3"></td>
+			      <td id="posTeam3"></td>
+			      <td id="pos3"></td>
+			    </tr>
+			  </tbody>
+			</table>
 		</div>
-
+		<!-- possibility of championship -->
 	</div>
+	<!-- elements container -->
 
 	<script src="js/main.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
 </html>
